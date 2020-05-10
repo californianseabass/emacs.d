@@ -98,6 +98,9 @@
 (setq-default indent-tabs-mode nil) ;; turn tabs into spaces
 (setq split-width-threshold 1) ;; set split screen to be vertical
 
+;;
+(global-display-line-numbers-mode)
+
 
 ;; global key bindings
 (global-set-key (kbd "C-x g") 'magit-status)
