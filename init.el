@@ -27,8 +27,6 @@
     company-go
     csv-mode
     dockerfile-mode
-    ein
-    elpy
     evil
     exec-path-from-shell
     flycheck
@@ -42,7 +40,6 @@
     highlight-indent-guides
     inf-clojure
     inf-ruby
-    jedi
     jeison
     js2-mode
     json-mode
@@ -137,7 +134,7 @@
       "(do (require 'figwheel-sidecar.repl-api)
            (figwheel-sidecar.repl-api/start-figwheel!)
            (figwheel-sidecar.repl-api/cljs-repl))")
-         
+
 (require 'clojure-mode)
 
 (require 'company)
@@ -150,14 +147,6 @@
 
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-
-(require 'ein)
-;;(require 'ein-loaddefs)
-;;(require 'ein-notebook)
-;;(require 'ein-subpackages)
-
-(require 'elpy)
-(elpy-enable)
 
 (require 'evil)
 (evil-mode t)
@@ -172,9 +161,6 @@
 (add-hook 'eww-mode-hook 'visual-line-mode)
 
 (require 'flycheck)
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 (require 'graphviz-dot-mode)
 (require 'go-mode)
@@ -312,11 +298,6 @@
 (require 'inf-clojure)
 (require 'inf-ruby)
 
-;; note this library requires virutalenv
-;; start with M-x jedi:install-server
-(require 'jedi)
-(setq jedi:complete-on-dot t)
-
 ;; https://github.com/SavchenkoValeriy/jeison
 ;; https://news.ycombinator.com/item?id=20448753
 (require 'jeison)
@@ -351,16 +332,6 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
   ;:init (setq markdown-command "multimarkdown"))
-
-;; python-mode
-;; https://www.emacswiki.org/emacs/IndentingPython
-(add-hook 'python-mode-hook
-    (lambda ()
-      (setq-default indent-tabs-mode t)
-      (setq-default tab-width 2)
-      (setq-default py-indent-tabs-mode t)
-      (jedi:setup)
-      (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
 (require 'paredit)
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -450,7 +421,7 @@
  '(ein:jupyter-default-notebook-directory "/home/sebastian/developer/jupyter-notebooks/")
  '(package-selected-packages
    (quote
-    (flycheck-rust cargo rust-mode gnu-elpa-keyring-update markdown-preview-mode magit markdown-mode+ markdown-mode tide solarized-theme use-package evil))))
+	(pyenv-mode pipenv flycheck-rust cargo rust-mode gnu-elpa-keyring-update markdown-preview-mode magit markdown-mode+ markdown-mode tide solarized-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -538,5 +509,6 @@
 
 (require 'rust-init)
 (require 'yaml-init)
+(require 'python-init)
 
 (provide 'init)
