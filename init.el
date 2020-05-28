@@ -510,5 +510,6 @@
 (require 'rust-init)
 (require 'yaml-init)
 (require 'python-init)
+(require 'terraform-init)
 
 (provide 'init)
