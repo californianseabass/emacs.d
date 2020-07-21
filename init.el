@@ -49,6 +49,7 @@
     mocha
     paredit
     prettier-js
+    powershell
     racket-mode
     rjsx-mode
     restclient
@@ -95,8 +96,36 @@
 (setq-default indent-tabs-mode nil) ;; turn tabs into spaces
 (setq split-width-threshold 1) ;; set split screen to be vertical
 
+;; setting up copy paste between wsl and windows
+(when (string-match-p "Microsoft" (shell-command-to-string "uname -a"))
+  (defun wsl-copy (start end)
+    (interactive "r")
+    (shell-command-on-region start end "clip.exe"))
+  (global-set-key
+   (kbd "C-c C-y")
+   'wsl-copy)
+
+  (defun wsl-paste ()
+    (interactive)
+    (let ((wslbuffername "wsl-temp-buffer"))
+      (get-buffer-create wslbuffername)
+      (with-current-buffer wslbuffername
+        (insert (let ((coding-system-for-read 'dos))
+                  ;; TODO: put stderr somewhere else
+                  (shell-command "powershell.exe -command 'Get-Clipboard' 2> /dev/null" wslbuffername nil))))
+      (insert-buffer wslbuffername)
+      (kill-buffer wslbuffername)))
+  (global-set-key
+   (kbd "C-c C-p")
+   'wsl-copy)
+
+
+  )
+
+
+
 ;;
-(global-display-line-numbers-mode)
+;;(global-display-line-numbers-mode)
 
 
 ;; global key bindings
