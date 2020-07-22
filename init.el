@@ -37,6 +37,7 @@
     go-guru
     go-mode
     helm
+    helm-projectile
     highlight-indent-guides
     inf-clojure
     inf-ruby
@@ -49,13 +50,13 @@
     mocha
     paredit
     prettier-js
+    projectile
     powershell
     racket-mode
     rjsx-mode
     restclient
     robe
     ruby-electric
-    scala-mode
     seeing-is-believing
     slime
     smart-shift
@@ -382,6 +383,10 @@
   "--single-quote"
 ))
 
+(require 'projectile)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (add-hook 'web-mode-hook #'(lambda ()
                             (enable-minor-mode
                              '("\\.(j|t)sx?\\'" . prettier-js-mode))))
@@ -450,7 +455,7 @@
  '(ein:jupyter-default-notebook-directory "/home/sebastian/developer/jupyter-notebooks/")
  '(package-selected-packages
    (quote
-	(pyenv-mode pipenv flycheck-rust cargo rust-mode gnu-elpa-keyring-update markdown-preview-mode magit markdown-mode+ markdown-mode tide solarized-theme use-package evil))))
+    (pyenv-mode pipenv flycheck-rust cargo rust-mode gnu-elpa-keyring-update markdown-preview-mode magit markdown-mode+ markdown-mode tide solarized-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
