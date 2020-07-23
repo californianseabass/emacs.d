@@ -402,12 +402,6 @@
 (require 'ruby-electric)
 (add-hook 'ruby-mode-hook (lambda () (ruby-electric-mode t)))
 
-(require 'scala-mode)
-
-(use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode))
-
 (require 'seeing-is-believing)
 (add-hook 'ruby-mode-hook 'seeing-is-believing)
 
@@ -456,7 +450,7 @@
  '(ein:jupyter-default-notebook-directory "/home/sebastian/developer/jupyter-notebooks/")
  '(package-selected-packages
    (quote
-    (pyenv-mode pipenv flycheck-rust cargo rust-mode gnu-elpa-keyring-update markdown-preview-mode magit markdown-mode+ markdown-mode tide solarized-theme use-package evil))))
+    (ammonite-term-repl pyenv-mode pipenv flycheck-rust cargo rust-mode gnu-elpa-keyring-update markdown-preview-mode magit markdown-mode+ markdown-mode tide solarized-theme use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -553,6 +547,7 @@
 (require 'rust-init)
 (require 'yaml-init)
 (require 'python-init)
+(require 'scala-init)
 (require 'terraform-init)
 
 (provide 'init)
