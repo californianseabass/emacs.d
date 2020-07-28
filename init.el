@@ -65,7 +65,9 @@
     typescript-mode
     use-package
     web-mode
-    yaml-mode))
+    yaml-mode
+    yasnippet
+    yasnippet-snippets))
 
 
 ;; todo this doesn't happen when necessary
@@ -539,7 +541,16 @@
 ;; not sure how this got here
 ;; (put 'downcase-region 'disabled nil)
 
-;;(server-start)
+(use-package yasnippet
+  :defer 1
+  :diminish yas-minor-mode
+  :config (yas-global-mode))
+;;   (yas-reload-all))
+
+(use-package yasnippet-snippets
+  :after yasnippet
+  :config (yasnippet-snippets-initialize))
+
 
 (require 'rust-init)
 (require 'yaml-init)
