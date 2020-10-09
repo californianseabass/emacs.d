@@ -1,3 +1,5 @@
+(require-package 'company)
+(require-package 'company-jedi)
 (require-package 'ein)
 (require-package 'elpy)
 (require-package 'flycheck)
@@ -38,6 +40,15 @@
       (jedi:setup)
       (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
+(use-package company-jedi
+  :ensure t
+  :defer t
+  :init
+  (defun enable-jedi()
+    (setq-local company-backends
+                (append '(company-jedi) company-backends)))
+  (with-eval-after-load 'company
+          (add-hook 'python-mode-hook 'enable-jedi)))
 
 (use-package pipenv
   :hook (python-mode . pipenv-mode)
