@@ -26,6 +26,8 @@
     company
     company-go
     csv-mode
+    docker
+    docker-tramp
     dockerfile-mode
     evil
     exec-path-from-shell
@@ -44,7 +46,6 @@
     jeison
     js2-mode
     json-mode
-    lua-mode
     magit
     markdown-mode
     mocha
@@ -71,14 +72,19 @@
 
 
 ;; todo this doesn't happen when necessary
-(unless package-archive-contents
-  (package-refresh-contents))
-(package-refresh-contents)
+;;(unless package-archive-contents
+;;  (package-refresh-contents))
+;;(package-refresh-contents)
+
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;     (package-install 'use-package))
 
 ; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (message " must install %s" package)
+    (package-refresh-contents)
     (package-install package)))
 
 (eval-when-compile
@@ -177,6 +183,7 @@
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 
+(require 'docker)
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
@@ -343,16 +350,6 @@
 
 ;; npm install jsonlint -g
 ; (add-hook 'json-mode-hook 'flymake-json-load)
-
-;;;; https://immerrr.github.io/lua-mode/
-;; This snippet enables lua-mode
-;; This line is not necessary, if lua-mode.el is already on your load-path
-(require 'lua-mode)
-;(add-to-list 'load-path "/path/to/directory/where/lua-mode-el/resides")
-
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 (require 'magit)
 
@@ -550,7 +547,6 @@
 (use-package yasnippet-snippets
   :after yasnippet
   :config (yasnippet-snippets-initialize))
-
 
 (require 'rust-init)
 (require 'yaml-init)
