@@ -550,6 +550,7 @@
   :after yasnippet
   :config (yasnippet-snippets-initialize))
 
+(require 'julia-init)
 (require 'rust-init)
 (require 'yaml-init)
 (require 'python-init)
