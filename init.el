@@ -26,6 +26,7 @@
     company
     company-go
     csv-mode
+    dash
     docker
     docker-tramp
     dockerfile-mode
@@ -58,6 +59,7 @@
     restclient
     robe
     ruby-electric
+    s
     seeing-is-believing
     slime
     smart-shift
